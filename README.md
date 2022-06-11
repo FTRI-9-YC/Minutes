@@ -1,2 +1,2 @@
-# fullstack-template
-Generic template for building a fullstack project
+# Minutes
+Take notes alongside YouTube videos without needing to remember what time you were at!
