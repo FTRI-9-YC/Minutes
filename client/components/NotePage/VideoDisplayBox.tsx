@@ -5,7 +5,7 @@ interface stateChangeProps {
     handleInputChange: (val: string) => void,
     id: string,
     onPlayerReady: (val: object) => void,
-    onPlayerStateChange: (val: object) => void
+    onPlayerStateChange: (val: object) => void,
 }
 
 export default function VideoDisplayBox ({ id, handleInputChange, onPlayerReady, onPlayerStateChange }: stateChangeProps){
@@ -25,7 +25,6 @@ export default function VideoDisplayBox ({ id, handleInputChange, onPlayerReady,
         <input type="text" onChange={(e) => handleInputChange(e.target.value)} required placeholder="URL..." />
         <YouTube videoId={id} opts={opts} onReady={onPlayerReady} onStateChange={onPlayerStateChange} />
         </div>
-        
     )
 }
 

@@ -1,22 +1,16 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import NotesSummary from './NotesSummary';
 import VideoDisplayBox from './VideoDisplayBox';
-import getYouTubeID from 'get-youtube-id';
 
 interface stateChangeProps {
     onPlayerReady: (val: object) => void,
-    onPlayerStateChange: (val: object) => void
+    onPlayerStateChange: (val: object) => void,
+    handleInputChange: (val: string) => void,
+    id: string
 }
 
-export default function VideoSection ({ onPlayerReady, onPlayerStateChange }: stateChangeProps){
-    // state for timestamp
-    const [timeStamp, setTimeStamp] = useState('');
-    const[id, setId] = useState('');
+export default function VideoSection ({ onPlayerReady, onPlayerStateChange, handleInputChange, id }: stateChangeProps){
     
-    const handleInputChange = (val: string) => {
-        setId(getYouTubeID(val));
-    }
-
     return (
         <section>
             <NotesSummary />

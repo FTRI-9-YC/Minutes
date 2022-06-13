@@ -1,7 +1,13 @@
 import React from 'react';
+interface stateChangeProps {
+        handleNoteButtonPause: () => void,
+    }
 
-export default function AddNoteSection (){
+export default function AddNoteSection ( { handleNoteButtonPause }: stateChangeProps){
+    
     return (
-        <div></div>
+        <div>
+            <button onClick={ handleNoteButtonPause }></button>
+        </div>
     )
 }

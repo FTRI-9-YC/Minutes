@@ -2,10 +2,14 @@ import React from 'react';
 import AddNoteSection from './AddNoteSection';
 import NotePrevAccordian from './NotePrevAccordian';
 
-export default function SideBar (){
+interface stateChangeProps {
+    handleNoteButtonPause: () => void
+}
+
+export default function SideBar ({ handleNoteButtonPause }: stateChangeProps) {
     return (
         <div>
-            <AddNoteSection />
+            <AddNoteSection handleNoteButtonPause={ handleNoteButtonPause } />
             <NotePrevAccordian />
         </div>
     )
