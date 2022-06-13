@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 export default function AddNoteSection (){
     const [title, setTitle] = useState({value: ''});
     const [contents, setContents] = useState({value: ''});
-    const [username, setUsername] = useState({value: ''});
+    // const [username, setUsername] = useState({value: ''});
     const [videoLink, setVideoLink] = useState({value: ''});
-    const [videoTime, setVideoTime] = useState({value: '00:00:00'});
+    const [videoTime, setVideoTime] = useState({value: '0'});
     const [noteSummary, setNoteSummary] = useState([]);
 
    
@@ -16,7 +16,7 @@ export default function AddNoteSection (){
       const body = {
         title,
         contents,
-        username,
+        // username,
         videoLink,
         videoTime
       };
@@ -37,15 +37,20 @@ export default function AddNoteSection (){
         });
         setTitle({value: ''});
         setContents({value: ''});
+        setVideoTime({value: ''});
     }
     
     
     return (
   
         <section className="addNoteSection">
-          <input className="inputNoteTitle" onChange={(e : any) => setTitle(e.target.value)}/>
+          <input 
+            className="inputNoteTitle" 
+            onChange={(e : any) => setTitle(e.target.value)}/>
             {/* <textarea text={text} onChange={handleChange}/> */}
-          <textarea className="textArea" onChange={(e : any) => {
+          <textarea 
+            className="textArea" 
+        onChange={(e : any) => {
               setContents(e.target.value);
             //   setVideoTime()
             //  .getCurrentTime()
