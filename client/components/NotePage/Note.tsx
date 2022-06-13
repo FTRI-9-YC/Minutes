@@ -14,7 +14,7 @@ export default function Note ({ title, time, content, _id, deleteNoteHandler }: 
       <p>Title: {title}</p>
       <p>Time: {time}</p>
       <p>Content: {content}</p>
-      <button onClick={deleteNoteHandler(_id)}>Delete</button>
+      <button onClick={() => deleteNoteHandler(_id)}>Delete</button>
     </div>
     )
 }
