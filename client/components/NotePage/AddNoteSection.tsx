@@ -42,7 +42,6 @@ export default function AddNoteSection (){
     
     
     return (
-  
         <section className="addNoteSection">
           <input 
             className="inputNoteTitle" 
@@ -60,8 +59,6 @@ export default function AddNoteSection (){
           <button className="addNoteButton" onClick={handleClick}>Add Note</button> 
             {/* clicking the button will save to NotesSummary */}
         </section>
-
->>>>>>> dev
     )
 }
 
