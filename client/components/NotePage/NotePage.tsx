@@ -90,6 +90,7 @@ export default function NotePage() {
         handleInputChange={handleInputChange}
         id={id}
         linkInputted={linkInputted}
+        noteSummary={noteSummary}
       />
       <SideBar
         handleNoteInput={handleNoteInput}
