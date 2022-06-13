@@ -16,6 +16,10 @@ export default function NotePage() {
   const [youtubeLink, setYoutubeLink] = useState("");
   const [id, setId] = useState("");
   const [content, setContent] = useState("");
+  const [linkInputted, setLinkInputted] = useState(false);
+  const [title, setTitle] = useState("");
+  const [noteSummary, setNoteSummary] = useState([]);
+  
   useEffect(() => {
     // fetch data from database
   });
@@ -35,7 +39,18 @@ export default function NotePage() {
   };
 
   const handleInputChange = (val: string) => {
+    setYoutubeLink(val);
     setId(getYouTubeID(val));
+    setLinkInputted(true);
+    fetch('/api/notes/1')
+      .then(response => response.json())
+      .then((data) => {
+        console.log(data);
+        setNoteSummary(data.notes);
+      })
+      .catch((err: object) => {
+        console.log('Error:', err);
+      })
   };
 
   // handles note button pause, sets time stamp in state
@@ -43,10 +58,28 @@ export default function NotePage() {
     if (!videoObject) return console.error("Target does not exist");
     videoObject.pauseVideo();
     if (time === 0) {
-      setTime(videoObject.getCurrentTime());
+      setTime(Math.round(videoObject.getCurrentTime()));
     }
     setContent(val);
   };
+
+  const handleNoteSummary = (val: Array<{}>) => {
+    setNoteSummary((prevState) => [...prevState, val]);
+  }
+
+  const handleTitle = (val: string) => {
+    setTitle(val);
+  }
+
+  const deleteNoteHandler = (val: number) => {
+    fetch('/api/notes')
+      .then(response => response.json())
+      .then((data) => {
+        setNoteSummary(data.notes)
+      })
+      .catch((err: {}) => 
+        console.log('Error:', err));
+      }
 
   return (
     <div>
@@ -56,12 +89,19 @@ export default function NotePage() {
         onPlayerStateChange={onPlayerStateChange}
         handleInputChange={handleInputChange}
         id={id}
+        linkInputted={linkInputted}
       />
       <SideBar
         handleNoteInput={handleNoteInput}
         youtubeLink={youtubeLink}
         time={time}
         content={content}
+        title={title}
+        noteSummary={noteSummary}
+        handleNoteSummary={handleNoteSummary}
+        handleTitle={handleTitle}
+        deleteNoteHandler={deleteNoteHandler}
+
       />
     </div>
   );
