@@ -9,12 +9,18 @@ interface stateChangeProps {
 }
 
 export default function Note ({ title, time, content, _id, deleteNoteHandler }: stateChangeProps){
-    return (
-    <div className="individualNote">
-      <p>Title: {title}</p>
-      <p>Time: {time}</p>
-      <p>Content: {content}</p>
-      <button onClick={() => deleteNoteHandler(_id)}>Delete</button>
-    </div>
-    )
+  const [hideContent, setHideContent] = useState(true);
+
+  return (
+    <section className="individualNote">
+      <div className="preview" onClick={() => setHideContent(prev => !prev)}>
+        <p>Title: {title}</p>
+        <p>Time: {time}</p>
+      </div>
+      {!hideContent && <div className="content">
+        <p>Content: {content}</p>
+        <button onClick={() => deleteNoteHandler(_id)}>Delete</button>
+      </div>}
+    </section>
+  )
 }
