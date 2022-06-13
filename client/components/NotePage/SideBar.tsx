@@ -3,19 +3,20 @@ import AddNoteSection from "./AddNoteSection";
 import NotePrevAccordian from "./NotePrevAccordian";
 
 interface stateChangeProps {
-  handleNoteInput: (val: string) => void;
-  youtubeLink: string;
-  time: number;
-  content: string;
-  title: string;
-  noteSummary: Array<object>;
-  handleNoteSummary: (val: Array<object>) => void;
-  handleTitle: (val: string) => void;
+  handleNoteInput: (val: string) => void,
+  youtubeLink: string,
+  time: number,
+  content: string,
+  title: string,
+  noteSummary: Array<object>,
+  handleNoteSummary: (val: Array<object>) => void,
+  handleTitle: (val: string) => void,
+  deleteNoteHandler: (val: number) => any
 }
 
 
 
-export default function SideBar({ handleNoteInput, youtubeLink, time, content, title, noteSummary, handleNoteSummary, handleTitle}: stateChangeProps) {
+export default function SideBar({ handleNoteInput, youtubeLink, time, content, title, noteSummary, handleNoteSummary, handleTitle, deleteNoteHandler }: stateChangeProps) {
   
 
 
@@ -32,9 +33,8 @@ export default function SideBar({ handleNoteInput, youtubeLink, time, content, t
         handleTitle={handleTitle}
 
       />
-      <NotePrevAccordian />
-       noteSummary={noteSummary}
-      />
+      <NotePrevAccordian noteSummary={noteSummary} deleteNoteHandler={deleteNoteHandler} />
+       
     </div>
   );
 }

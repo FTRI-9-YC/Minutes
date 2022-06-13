@@ -35,12 +35,12 @@ export default function AddNoteSection({ handleNoteInput, youtubeLink, time, con
     fetch("/api/", request)
       .then((response) => response.json())
       .then((data) => {
-        handleNoteSummary((prevState) => [...prevState, data]);
+        handleNoteSummary(data);
       })
       .catch((err) => {
         console.log(err);
       });
-    handleTitle("");
+      handleTitle("");
   }
 
   return (

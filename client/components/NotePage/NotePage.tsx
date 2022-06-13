@@ -41,7 +41,7 @@ export default function NotePage() {
   const handleInputChange = (val: string) => {
     setId(getYouTubeID(val));
     setLinkInputted(true);
-    fetch('http://localhost:3000/')
+    fetch('http://localhost:3000/api/notes/YooJin')
       .then(response => response.json())
       .then((data) => {
         setNoteSummary(data);
@@ -66,8 +66,18 @@ export default function NotePage() {
   }
 
   const handleTitle = (val: string) => {
-    
+    setTitle(val);
   }
+
+  const deleteNoteHandler = (val: number) => {
+    fetch('/api/notes')
+      .then(response => response.json())
+      .then((data) => {
+        setNoteSummary(data)
+      })
+      .catch((err: {}) => 
+        console.log('Error:', err));
+      }
 
   return (
     <div>
@@ -88,6 +98,8 @@ export default function NotePage() {
         noteSummary={noteSummary}
         handleNoteSummary={handleNoteSummary}
         handleTitle={handleTitle}
+        deleteNoteHandler={deleteNoteHandler}
+
       />
     </div>
   );
