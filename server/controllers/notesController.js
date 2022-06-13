@@ -1,6 +1,6 @@
 import { ClientError, getBodyProps } from '../utils/utils.js';
 import { v4 as uuidv4 } from 'uuid';
-import {query, sql} from '../models/model.js'
+import {query, sql} from '../models/model.js';
 
 
 /** @typedef {import("express").RequestHandler} RequestHandler */
@@ -19,7 +19,6 @@ notesController.getUserNotes = (req, res, next) => {
     msg: 'Invalid URL parameter',
     err: new ClientError('Provided userId parameter in URL is invalid')
   });
-  // TODO: Query database and store notes into locals
 
   let text = `SELECT * FROM Notes WHERE Notes.user_id = 1`
   const params = [];
@@ -59,7 +58,6 @@ notesController.addNote = (req, res, next) => {
     });
   }
 
-  // TODO: Insert note into database and store returned row into locals
   const text = `
     INSERT INTO Notes (user_id, _id, title, youtube_link, content, time)
     VALUES ($1, $2, $3, $4, $5, $6)

@@ -1,5 +1,6 @@
 import express from 'express';
-import noteRouter from './routes/notes.js';
+import notesRouter from './routes/notes.js';
+import videosRouter from './routes/videos.js';
 import fs from 'fs/promises';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -18,7 +19,8 @@ app.use(express.urlencoded());
 app.use('/', express.static(path.resolve(__dirname, '../dist')));
 
 /// Routes
-app.use('/api/notes', noteRouter);
+app.use('/api/notes', notesRouter);
+app.use('/api/videos', videosRouter);
 
 /* app.get('/', function(req, res) {
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
