@@ -39,12 +39,14 @@ export default function NotePage() {
   };
 
   const handleInputChange = (val: string) => {
+    setYoutubeLink(val);
     setId(getYouTubeID(val));
     setLinkInputted(true);
-    fetch('http://localhost:3000/api/notes/YooJin')
+    fetch('/api/notes/1')
       .then(response => response.json())
       .then((data) => {
-        setNoteSummary(data);
+        console.log(data);
+        setNoteSummary(data.notes);
       })
       .catch((err: object) => {
         console.log('Error:', err);
@@ -56,7 +58,7 @@ export default function NotePage() {
     if (!videoObject) return console.error("Target does not exist");
     videoObject.pauseVideo();
     if (time === 0) {
-      setTime(videoObject.getCurrentTime());
+      setTime(Math.round(videoObject.getCurrentTime()));
     }
     setContent(val);
   };
@@ -73,7 +75,7 @@ export default function NotePage() {
     fetch('/api/notes')
       .then(response => response.json())
       .then((data) => {
-        setNoteSummary(data)
+        setNoteSummary(data.notes)
       })
       .catch((err: {}) => 
         console.log('Error:', err));

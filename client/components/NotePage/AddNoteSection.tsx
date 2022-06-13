@@ -32,10 +32,10 @@ export default function AddNoteSection({ handleNoteInput, youtubeLink, time, con
       body: JSON.stringify(body),
     };
 
-    fetch("/api/", request)
+    fetch("/api/notes/", request)
       .then((response) => response.json())
       .then((data) => {
-        handleNoteSummary(data);
+        handleNoteSummary(data.newNote);
       })
       .catch((err) => {
         console.log(err);
