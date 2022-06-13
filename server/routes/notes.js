@@ -2,7 +2,7 @@ import { Router } from 'express';
 import notesController from '../controllers/notesController.js';
 const notesRouter = Router();
 
-notesRouter.get('/:username', notesController.getUserNotes, function(req, res) {
+notesRouter.get('/:userId', notesController.getUserNotes, function(req, res) {
   res.status(200).json({ notes: res.locals.notes });
 });
 

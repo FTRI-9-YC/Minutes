@@ -18,7 +18,7 @@ app.use(express.urlencoded());
 app.use('/', express.static(path.resolve(__dirname, '../dist')));
 
 /// Routes
-app.use('/api', noteRouter);
+app.use('/api/notes', noteRouter);
 
 /* app.get('/', function(req, res) {
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
