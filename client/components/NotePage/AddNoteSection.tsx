@@ -61,6 +61,7 @@ export default function AddNoteSection (){
             {/* clicking the button will save to NotesSummary */}
         </section>
 
+>>>>>>> dev
     )
 }
 
