@@ -42,7 +42,6 @@ export default function AddNoteSection (){
     
     
     return (
-  
         <section className="addNoteSection">
           <input 
             className="inputNoteTitle" 
