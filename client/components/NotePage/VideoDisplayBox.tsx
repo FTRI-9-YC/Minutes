@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
 
 interface stateChangeProps {
@@ -6,10 +6,10 @@ interface stateChangeProps {
     id: string,
     onPlayerReady: (val: object) => void,
     onPlayerStateChange: (val: object) => void,
+    linkInputted: boolean
 }
 
-export default function VideoDisplayBox ({ id, handleInputChange, onPlayerReady, onPlayerStateChange }: stateChangeProps){
-    
+export default function VideoDisplayBox ({ id, handleInputChange, onPlayerReady, onPlayerStateChange, linkInputted }: stateChangeProps){
     // config for youtube player
     const opts: YouTubeProps['opts'] = {
         height: '390',
@@ -22,8 +22,7 @@ export default function VideoDisplayBox ({ id, handleInputChange, onPlayerReady,
 
     return (
         <div>
-        <input type="text" onChange={(e) => handleInputChange(e.target.value)} required placeholder="URL..." />
-        <YouTube videoId={id} opts={opts} onReady={onPlayerReady} onStateChange={onPlayerStateChange} />
+            {linkInputted === false ? <input type="text" onChange={(e) => handleInputChange(e.target.value)} required placeholder="URL..." /> : <YouTube videoId={id} opts={opts} onReady={onPlayerReady} onStateChange={onPlayerStateChange} />}
         </div>
     )
 }

@@ -16,6 +16,10 @@ export default function NotePage() {
   const [youtubeLink, setYoutubeLink] = useState("");
   const [id, setId] = useState("");
   const [content, setContent] = useState("");
+  const [linkInputted, setLinkInputted] = useState(false);
+  const [title, setTitle] = useState("");
+  const [noteSummary, setNoteSummary] = useState([]);
+  
   useEffect(() => {
     // fetch data from database
   });
@@ -36,6 +40,15 @@ export default function NotePage() {
 
   const handleInputChange = (val: string) => {
     setId(getYouTubeID(val));
+    setLinkInputted(true);
+    fetch('http://localhost:3000/api/notes/YooJin')
+      .then(response => response.json())
+      .then((data) => {
+        setNoteSummary(data);
+      })
+      .catch((err: object) => {
+        console.log('Error:', err);
+      })
   };
 
   // handles note button pause, sets time stamp in state
@@ -48,6 +61,24 @@ export default function NotePage() {
     setContent(val);
   };
 
+  const handleNoteSummary = (val: Array<{}>) => {
+    setNoteSummary((prevState) => [...prevState, val]);
+  }
+
+  const handleTitle = (val: string) => {
+    setTitle(val);
+  }
+
+  const deleteNoteHandler = (val: number) => {
+    fetch('/api/notes')
+      .then(response => response.json())
+      .then((data) => {
+        setNoteSummary(data)
+      })
+      .catch((err: {}) => 
+        console.log('Error:', err));
+      }
+
   return (
     <div>
       <NavBar />
@@ -56,12 +87,19 @@ export default function NotePage() {
         onPlayerStateChange={onPlayerStateChange}
         handleInputChange={handleInputChange}
         id={id}
+        linkInputted={linkInputted}
       />
       <SideBar
         handleNoteInput={handleNoteInput}
         youtubeLink={youtubeLink}
         time={time}
         content={content}
+        title={title}
+        noteSummary={noteSummary}
+        handleNoteSummary={handleNoteSummary}
+        handleTitle={handleTitle}
+        deleteNoteHandler={deleteNoteHandler}
+
       />
     </div>
   );

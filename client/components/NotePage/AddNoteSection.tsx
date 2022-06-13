@@ -5,16 +5,15 @@ interface stateChangeProps {
   youtubeLink: string;
   time: number;
   content: string;
+  title: string;
+  noteSummary: Array<{}>;
+  handleNoteSummary: (val: Array<{}>) => void;
+  handleTitle: (val: string) => void;
 }
 
-export default function AddNoteSection({ handleNoteInput, youtubeLink, time, content }: stateChangeProps) {
-  const [title, setTitle] = useState("");
-  // const [contents, setContents] = useState({value: ''});
-  // const [username, setUsername] = useState({value: ''});
-  // const [videoLink, setVideoLink] = useState({value: ''});
-  // const [videoTime, setVideoTime] = useState({value: '0'});
-  const [noteSummary, setNoteSummary] = useState([]);
-
+export default function AddNoteSection({ handleNoteInput, youtubeLink, time, content, title, noteSummary, handleNoteSummary, handleTitle}: stateChangeProps) {
+  
+  
   function handleClick() {
     // console.log(timeStamp);
     // console.log(contents);
@@ -36,19 +35,19 @@ export default function AddNoteSection({ handleNoteInput, youtubeLink, time, con
     fetch("/api/", request)
       .then((response) => response.json())
       .then((data) => {
-        setNoteSummary((prevState) => [...prevState, data]);
+        handleNoteSummary(data);
       })
       .catch((err) => {
         console.log(err);
       });
-    setTitle("");
+      handleTitle("");
   }
 
   return (
     <section className="addNoteSection">
       <input
         className="inputNoteTitle"
-        onChange={(e: any) => setTitle(e.target.value)}
+        onChange={(e: any) => handleTitle(e.target.value)}
       />
       {/* <textarea text={text} onChange={handleChange}/> */}
       <textarea
