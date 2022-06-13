@@ -63,7 +63,8 @@
     "react-dom": "^18.1.0",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
-    "react-youtube": "^9.0.2"
+    "react-youtube": "^9.0.2",
+    "uuid": "^8.3.2"
   },
   "nodemonConfig": {
     "ignore": [
