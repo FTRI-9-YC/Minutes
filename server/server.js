@@ -8,7 +8,7 @@ import { CustomError, error, warn } from './utils/utils.js';
 ///Initialization
 // Initialize config
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const _config = JSON.parse(await fs.readFile(path.join(__dirname, './server.config.json')));
+const _config = JSON.parse(await fs.readFile(path.join(__dirname, './server.config.example.json')));
 
 // Set up application
 const app = express();
@@ -18,7 +18,7 @@ app.use(express.urlencoded());
 app.use('/', express.static(path.resolve(__dirname, '../dist')));
 
 /// Routes
-app.use('/api', noteRouter);
+app.use('/api/notes', noteRouter);
 
 /* app.get('/', function(req, res) {
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
