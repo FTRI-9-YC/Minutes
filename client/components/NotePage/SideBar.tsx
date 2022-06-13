@@ -9,7 +9,7 @@ interface stateChangeProps {
 export default function SideBar ({ handleNoteButtonPause }: stateChangeProps) {
     return (
         <div>
-            <AddNoteSection handleNoteButtonPause={ handleNoteButtonPause } />
+            <AddNoteSection />
             <NotePrevAccordian />
         </div>
     )
