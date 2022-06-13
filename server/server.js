@@ -8,7 +8,7 @@ import { CustomError, error, warn } from './utils/utils.js';
 ///Initialization
 // Initialize config
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const _config = JSON.parse(await fs.readFile(path.join(__dirname, './server.config.example.json')));
+const _config = JSON.parse(await fs.readFile(path.join(__dirname, './server.config.json')));
 
 // Set up application
 const app = express();
