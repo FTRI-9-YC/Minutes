@@ -54,3 +54,92 @@ body {
   height: 100%;
 	margin: 0;
 }
+
+// Navbar
+
+/* Header */
+header {
+  background-color: white;
+  min-height: 3.5rem;
+  padding: 0 10vw;
+}
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 3px 18px -11px grey;
+}
+.brand-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  color: inherit;
+  text-decoration: none;
+  color: rgb(127 115 195);
+  font-weight: 200;
+}
+.brand-logo-name {
+  font-size: 1rem;
+}
+.main-nav ul {
+  display: flex;
+  margin: 0;
+  padding: auto;
+  list-style: none;
+}
+
+.main-nav a {
+  color: #3f3f3f;
+  text-decoration: none;
+  padding: 0 1rem;
+}
+.main-nav a:hover {
+  color: rgb(127 115 195);
+}
+.toggle-button {
+  display: none;
+}
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 2px;
+}
+
+@media only screen and (max-width: 1000px) {
+  header {
+    padding: 0 5vw;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .toggle-button {
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 25px;
+    width: 30px;
+    cursor: pointer;
+    display: flex;
+  }
+
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .main-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    display: none;
+  }
+  .main-nav li {
+    padding: 0.6rem 0;
+  }
+  .main-nav a {
+    padding: 0;
+  }
+  .main-nav ul.active {
+    display: flex;
+  }
+}
