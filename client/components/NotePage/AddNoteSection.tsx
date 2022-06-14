@@ -48,6 +48,8 @@ export default function AddNoteSection({ handleNoteInput, youtubeLink, time, con
       <input
         className="inputNoteTitle"
         onChange={(e: any) => handleTitle(e.target.value)}
+        placeholder='Note title...'
+        type="text"
       />
       {/* <textarea text={text} onChange={handleChange}/> */}
       <textarea
@@ -56,6 +58,7 @@ export default function AddNoteSection({ handleNoteInput, youtubeLink, time, con
           handleNoteInput(e.target.value);
           // e is our event, t
         }}
+        placeholder='Note contents...'
       />
       <button className="addNoteButton" onClick={handleClick}>
         Add Note

@@ -14,8 +14,7 @@ export default function Note ({ title, time, content, _id, deleteNoteHandler }: 
   return (
     <section className="individualNote">
       <div className="preview" onClick={() => setHideContent(prev => !prev)}>
-        <p>Title: {title}</p>
-        <p>Time: {time}</p>
+        <p>{title} <span className="time">{time}</span></p>
       </div>
       {!hideContent && <div className="content">
         <p>Content: {content}</p>

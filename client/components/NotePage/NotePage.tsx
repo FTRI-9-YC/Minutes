@@ -82,15 +82,9 @@ export default function NotePage() {
       }
 
   return (
-    <div>
-      <NavBar />
-      <VideoSection
-        onPlayerReady={onPlayerReady}
-        onPlayerStateChange={onPlayerStateChange}
-        handleInputChange={handleInputChange}
-        id={id}
-        linkInputted={linkInputted}
-      />
+    <>
+    <NavBar />
+    <section className="notepage">
       <SideBar
         handleNoteInput={handleNoteInput}
         youtubeLink={youtubeLink}
@@ -103,6 +97,14 @@ export default function NotePage() {
         deleteNoteHandler={deleteNoteHandler}
 
       />
-    </div>
+      <VideoSection
+        onPlayerReady={onPlayerReady}
+        onPlayerStateChange={onPlayerStateChange}
+        handleInputChange={handleInputChange}
+        id={id}
+        linkInputted={linkInputted}
+      />
+    </section>
+    </>
   );
 }

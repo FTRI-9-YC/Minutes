@@ -1,6 +1,11 @@
-:root {
-  $color-blue: rgb(63, 63, 137);
+@font-face {
+  font-family: 'virgil';
+  src: url('../assets/fonts/Virgil.woff2') format('woff2');
 }
+
+$blue: #2196F3;
+$grey: #E0E0E0;
+$white: #FFFFFF;
 
 @mixin no-select {
 	-moz-user-select: none;
@@ -53,6 +58,11 @@ body {
   width: 100%;
   height: 100%;
 	margin: 0;
+	overflow: hidden;
+}
+
+#root {
+  height: 100%;
 }
 
 // Navbar
@@ -75,12 +85,17 @@ header {
   font-size: 1.25rem;
   color: inherit;
   text-decoration: none;
-  color: rgb(127 115 195);
+  color: $blue;
   font-weight: 200;
 }
 .brand-logo-name {
   font-size: 1rem;
+
+  h1 {
+    font-family: 'virgil';
+  }
 }
+
 .main-nav ul {
   display: flex;
   margin: 0;
@@ -89,12 +104,13 @@ header {
 }
 
 .main-nav a {
-  color: #3f3f3f;
+  /* color: #3f3f3f; */
+  color: white;
   text-decoration: none;
   padding: 0 1rem;
 }
 .main-nav a:hover {
-  color: rgb(127 115 195);
+  color: $blue;
 }
 .toggle-button {
   display: none;
@@ -142,4 +158,76 @@ header {
   .main-nav ul.active {
     display: flex;
   }
+}
+
+/* Side bar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  width: 300px;
+	height: 100%;
+  background: #ebebeb;
+  border-right: 1px solid lightgrey;
+	flex: 1;
+
+  .addNoteSection {
+    display: flex;
+    flex-flow: column nowrap;
+		padding: .5em;
+  }
+}
+
+/* Video Section  container */
+.videosection {
+	flex: 2; 
+}
+
+/* Note page container */
+.notepage {
+	display: flex;
+  width: 100%;
+  height: 100%;
+  // border: 5px solid red;
+}
+
+.preview {
+	background-color: $blue;
+	color: $white;
+	padding: .5em;
+	height: 100%;
+
+  * {
+    cursor: pointer;
+  }
+  cursor: pointer;
+}
+
+.content {
+
+}
+
+button {
+	width: 30%;
+	padding: .5em;
+	margin: 1em auto;
+	border: none;
+	background-color: $blue;
+	color: $white;
+}
+
+.textArea {
+	margin-top: .5em;
+}
+
+input[type="text"], textarea {
+  cursor: text;
+}
+
+.inputNoteTitle {
+	padding: .5em;
+}
+
+.time {
+	float: right;
 }

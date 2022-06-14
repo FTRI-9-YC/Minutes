@@ -3,5 +3,5 @@ import './stylesheets/styles.scss';
 import NotePage from "./components/NotePage/NotePage";
 
 export default function App() {
-  return <div><NotePage /></div>;
+  return <NotePage />;
 }

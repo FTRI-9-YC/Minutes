@@ -21,7 +21,7 @@ export default function SideBar({ handleNoteInput, youtubeLink, time, content, t
 
 
   return (
-    <div>
+    <section className="sidebar">
       <AddNoteSection
         handleNoteInput={handleNoteInput}
         youtubeLink={youtubeLink}
@@ -35,6 +35,6 @@ export default function SideBar({ handleNoteInput, youtubeLink, time, content, t
       />
       <NotePrevAccordian noteSummary={noteSummary} deleteNoteHandler={deleteNoteHandler} />
        
-    </div>
+    </section>
   );
 }
