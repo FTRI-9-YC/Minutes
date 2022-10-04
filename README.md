@@ -13,3 +13,6 @@ Scratch project under Codesmith OSLabs FTRI 9 consisting of YooJin Chang, Eric W
 - TDD (Jest)
 - CSS/Sass
 
+## Screenshots
+
+<img width="878" alt="notetubescreenshot" src="https://user-images.githubusercontent.com/102988218/193856940-4c707f25-d938-465e-87cd-d1326845bb78.png">
