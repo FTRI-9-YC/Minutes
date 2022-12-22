@@ -3,15 +3,30 @@ import React, { useState } from "react";
 interface stateChangeProps {
   handleNoteInput: (val: string) => void;
   youtubeLink: string;
-  time: number;
+  time: string;
   content: string;
   title: string;
   noteSummary: Array<{}>;
   handleNoteSummary: (val: Array<{}>) => void;
   handleTitle: (val: string) => void;
+  // handleContent: (val: string) => void;
+  // videoSummary: Record<number, object[]>
+  // videoSummaryHandler: (val: Array<object>) => void,
 }
 
-export default function AddNoteSection({ handleNoteInput, youtubeLink, time, content, title, noteSummary, handleNoteSummary, handleTitle}: stateChangeProps) {
+export default function AddNoteSection({ 
+  handleNoteInput, 
+  youtubeLink, 
+  time, 
+  content, 
+  title, 
+  noteSummary, 
+  handleNoteSummary, 
+  handleTitle,
+  // videoSummary,
+  // videoSummaryHandler
+  // handleContent
+}: stateChangeProps) {
   
   
   function handleClick() {
@@ -25,7 +40,7 @@ export default function AddNoteSection({ handleNoteInput, youtubeLink, time, con
       youtubeLink,
       time,
     };
-
+    console.log('body:', body)
     const request = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -35,7 +50,9 @@ export default function AddNoteSection({ handleNoteInput, youtubeLink, time, con
     fetch("/api/notes/", request)
       .then((response) => response.json())
       .then((data) => {
-        handleNoteSummary(data.newNote);
+        console.log('data received to pass in handleNoteSummary:', data)
+        handleNoteSummary(data);
+        
       })
       .catch((err) => {
         console.log(err);
@@ -44,6 +61,7 @@ export default function AddNoteSection({ handleNoteInput, youtubeLink, time, con
   }
 
   return (
+   
     <section className="addNoteSection">
       <input
         className="inputNoteTitle"

@@ -10,6 +10,7 @@ interface stateChangeProps {
 }
 
 export default function VideoDisplayBox ({ id, handleInputChange, onPlayerReady, onPlayerStateChange, linkInputted }: stateChangeProps){
+   
     // config for youtube player
     const opts: YouTubeProps['opts'] = {
         height: '390',

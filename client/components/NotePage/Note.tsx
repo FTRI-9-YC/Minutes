@@ -2,13 +2,14 @@ import React, { useState } from "react";
 
 interface stateChangeProps {
     title: string,
-    time: number,
+    time: string,
     content: string,
     _id: number,
     deleteNoteHandler: (val: number) => any
 }
 
 export default function Note ({ title, time, content, _id, deleteNoteHandler }: stateChangeProps){
+  // export default function Note ({ title, content, _id, deleteNoteHandler }: stateChangeProps){
   const [hideContent, setHideContent] = useState(true);
 
   return (
