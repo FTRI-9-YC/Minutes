@@ -61,6 +61,7 @@
     "pg": "^8.7.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-iframe": "^1.8.5",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-youtube": "^9.0.2",

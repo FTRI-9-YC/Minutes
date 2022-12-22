@@ -16,8 +16,8 @@ export default function VideoDisplayBox ({ id, handleInputChange, onPlayerReady,
         height: '390',
         width: '640',
         playerVars: {
-      // one equals autoplay off
-            autoplay: 1,
+      // one equals autoplay off. 0 will have the video play automatically 
+            autoplay: 0,
         },
     };
 
