@@ -15,14 +15,14 @@ interface stateChangeProps {
   // handleContent: (val: string) => void,
   deleteNoteHandler: (val: number) => any,
   // handleSaveNotes: (val: ) => any
-  videoSummary: Record<number, object[]>
+  // videoSummary: Record<number, object[]>
   videoSummaryHandler: (val: Array<object>) => void,
   
 }
 
 
 
-export default function SideBar({ handleNoteInput, youtubeLink, time, content, title, noteSummary, handleNoteSummary, handleTitle, deleteNoteHandler, videoSummary, videoSummaryHandler }: stateChangeProps) {
+export default function SideBar({ handleNoteInput, youtubeLink, time, content, title, noteSummary, handleNoteSummary, handleTitle, deleteNoteHandler, videoSummaryHandler }: stateChangeProps) {
   
   const [ savedNoteInfo, setSavedNoteInfo ] = useState({
     // link: '',

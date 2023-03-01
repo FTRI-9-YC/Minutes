@@ -7,28 +7,28 @@ import YouTube, {
   YouTubeEvent,
   YouTubeProps,
 } from "react-youtube";
-// import getYouTubeID from "get-youtube-id";
+import getYouTubeID from "get-youtube-id";
 
 interface NotePageProps {
-  youtubeLink: string,
-  id: string,
-  linkInputted: boolean,
-  noteSummary: Array<object>,
-  handleNoteSummary: (val: Array<object>) => void
-  videoSummary: Record<number, object[]>,
+  // youtubeLink: string,
+  // id: string,
+  // linkInputted: boolean,
+  // noteSummary: Array<object>,
+  // handleNoteSummary: (val: Array<object>) => void
+  // videoSummary: Record<number, object[]>,
   videoSummaryHandler: (val: Array<object>) => void,
-  deleteNoteHandler: (val: number) => any,
-  handleInputChange: (val: string) => void,
-  onPlayerReady: (val: object) => void,
-  onPlayerStateChange: (val: object) => void,
-  handleNoteInput: (val: string) => void,
-  time: string,
-  content: string,
-  title: string,
-  handleTitle: (val: string) => void,
+  // deleteNoteHandler: (val: number) => any,
+  // handleInputChange: (val: string) => void,
+  // onPlayerReady: (val: object) => void,
+  // onPlayerStateChange: (val: object) => void,
+  // handleNoteInput: (val: string) => void,
+  // time: string,
+  // content: string,
+  // title: string,
+  // handleTitle: (val: string) => void,
 }
 
-export default function NotePage( { youtubeLink, id, linkInputted, noteSummary, handleNoteSummary, videoSummary, videoSummaryHandler, deleteNoteHandler, handleInputChange, onPlayerReady, onPlayerStateChange, handleNoteInput, time, content, title, handleTitle } : NotePageProps) {
+export default function NotePage( { videoSummaryHandler} : NotePageProps) {
   // State for testing - can delete if needed
   // const [videoObject, setVideoObject] = useState<YouTubePlayer>();
   // const [time, setTime] = useState("");
@@ -39,6 +39,18 @@ export default function NotePage( { youtubeLink, id, linkInputted, noteSummary, 
   // const [title, setTitle] = useState("");
   // const [noteSummary, setNoteSummary] = useState([]);
 //  console.log('youtube-video-id:', id)
+
+// const [videoSummary, setVideoSummary] = useState({});
+// const [videoNums, setVideoNums] = useState([]) // state to store video # as an array ex: [1, 2, 3, 4]
+const [time, setTime] = useState("");
+const [content, setContent] = useState("");
+const [title, setTitle] = useState("");
+const [videoObject, setVideoObject] = useState<YouTubePlayer>();
+const [youtubeLink, setYoutubeLink] = useState("");
+const [youtubeId, setYoutubeId] = useState("");
+const [linkInputted, setLinkInputted] = useState(false);
+const [noteSummary, setNoteSummary] = useState([]);
+
   useEffect(() => {
     // fetch data from database
   });
@@ -58,78 +70,92 @@ export default function NotePage( { youtubeLink, id, linkInputted, noteSummary, 
   //   setVideoObject(e.target);
   //   e.target.pauseVideo();
   // };
+  const onPlayerStateChange: YouTubeProps["onStateChange"] = (
+    e: YouTubeEvent<number>
+  ) => {
+    console.log('e:', e);
+  };
 
-  // const handleInputChange = (val: string) => {
-  //   setYoutubeLink(val);
-  //   setId(getYouTubeID(val));
-  //   setLinkInputted(true);
-  //   fetch('/api/notes/1')
-  //     .then(response => response.json())
-  //     .then((data) => {
-  //       // console.log('is there even data here??from handleInputChange:', data);
-  //       setNoteSummary(data.notes);
-  //     })
-  //     .catch((err: object) => {
-  //       console.log('Error in handleInputChange.. is there even data thats been received?', err);
-  //     })
+  // once video loads, function fires and video is automatically paused for user to press play
+  const onPlayerReady: YouTubeProps["onReady"] = (e) => {
+    // set target state to player obj (use for pause button)
+    console.log('onplayerready')
+    console.log('e.target:', e.target)
+    setVideoObject(e.target);
+    e.target.pauseVideo();
+  };
+
+  const handleInputChange = (val: string) => {
+    setYoutubeLink(val);
+    setYoutubeId(getYouTubeID(val));
+    setLinkInputted(true);
+    fetch('/api/notes/1')
+      .then(response => response.json())
+      .then((data) => {
+        // console.log('is there even data here??from handleInputChange:', data);
+        setNoteSummary(data.notes);
+      })
+      .catch((err: object) => {
+        console.log('Error in handleInputChange.. is there even data thats been received?', err);
+      })
       
-  // };
+  };
 
   // // handles note button pause, sets time stamp in state
-  // const handleNoteInput = (val: string) => {
-  //   console.log('val parameter:', val)
-  //   if (!videoObject) return console.error("Target does not exist");
-  //   videoObject.pauseVideo();
-  //   // if (time.length === 0) {
-  //     let seconds = Math.round(videoObject.getCurrentTime());
-  //     setTime(new Date(seconds * 1000).toISOString().slice(11, 19));
+  const handleNoteInput = (val: string) => {
+    console.log('val parameter:', val)
+    if (!videoObject) return console.error("Target does not exist");
+    videoObject.pauseVideo();
+    // if (time.length === 0) {
+      let seconds = Math.round(videoObject.getCurrentTime());
+      setTime(new Date(seconds * 1000).toISOString().slice(11, 19));
       
-  //   // } 
-  //   // if (noteSummary.length)
-  //   setContent(val);
+    // } 
+    // if (noteSummary.length)
+    setContent(val);
     
-  //   // setTime("");
-  // };
+    // setTime("");
+  };
 
-  // const handleNoteSummary = (val: Array<{}>) => {
-  //   // setNoteSummary((prevState) => [...prevState, val]);
-  //   setNoteSummary((prevState) => [...prevState, val]);
-  // }
+  const handleNoteSummary = (val: Array<{}>) => {
+    // setNoteSummary((prevState) => [...prevState, val]);
+    setNoteSummary((prevState) => [...prevState, val]);
+  }
 
-  // const handleTitle = (val: string) => {
-  //   console.log('title:', val)
-  //   setTitle(val);
-  // }
+  const handleTitle = (val: string) => {
+    console.log('title:', val)
+    setTitle(val);
+  }
 
-  // const handleContent = (val: string) => {
-  //   console.log('content:', content)
-  //   setContent(val);
-  // }
+  const handleContent = (val: string) => {
+    console.log('content:', content)
+    setContent(val);
+  }
 
-  // const deleteNoteHandler = (val: number) => {
-  //   console.log(`delete clicked ${val}`)
-  //   fetch(`/api/notes/${val}`, {
-  //     method: 'DELETE',
-  //     headers: { 'Content-Type': 'application/json' },
-  //   })
-  //     .then(response => response.json())
-  //     .then((data) => {
-  //       // setNoteSummary(data)
-  //       console.log('deletedData:', data)
-  //       const newNoteSummary = [];
-  //       console.log('currentNoteSummary:', noteSummary)
-  //       for (let i = 0; i < noteSummary.length; i++){
-  //         if (noteSummary[i].dbId !== data.dbId){
-  //           newNoteSummary.push(noteSummary[i])
-  //         }
-  //       }
-  //      setNoteSummary([...newNoteSummary])
-  //      console.log('noteSummary', noteSummary)
+  const deleteNoteHandler = (val: number) => {
+    console.log(`delete clicked ${val}`)
+    fetch(`/api/notes/${val}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json())
+      .then((data) => {
+        // setNoteSummary(data)
+        console.log('deletedData:', data)
+        const newNoteSummary = [];
+        console.log('currentNoteSummary:', noteSummary)
+        for (let i = 0; i < noteSummary.length; i++){
+          if (noteSummary[i].dbId !== data.dbId){
+            newNoteSummary.push(noteSummary[i])
+          }
+        }
+       setNoteSummary([...newNoteSummary])
+       console.log('noteSummary', noteSummary)
           
-  //     })
-  //     .catch((err) => 
-  //       console.log(err));
-  //     }
+      })
+      .catch((err) => 
+        console.log(err));
+      }
   
 
 
@@ -148,7 +174,7 @@ export default function NotePage( { youtubeLink, id, linkInputted, noteSummary, 
         handleTitle={handleTitle}
         // handleContent={handleContent}
         deleteNoteHandler={deleteNoteHandler}
-        videoSummary={videoSummary}
+        // videoSummary={videoSummary}
         videoSummaryHandler={videoSummaryHandler}
         
       />
@@ -156,7 +182,7 @@ export default function NotePage( { youtubeLink, id, linkInputted, noteSummary, 
         onPlayerReady={onPlayerReady}
         onPlayerStateChange={onPlayerStateChange}
         handleInputChange={handleInputChange}
-        id={id}
+        youtubeId={youtubeId}
         linkInputted={linkInputted}
       />
     </section>

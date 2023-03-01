@@ -6,16 +6,16 @@ interface stateChangeProps {
     onPlayerReady: (val: object) => void,
     onPlayerStateChange: (val: object) => void,
     handleInputChange: (val: string) => void,
-    id: string,
+    youtubeId: string,
     linkInputted: boolean
 }
 
-export default function VideoSection ({ onPlayerReady, onPlayerStateChange, handleInputChange, id, linkInputted }: stateChangeProps){
+export default function VideoSection ({ onPlayerReady, onPlayerStateChange, handleInputChange, youtubeId, linkInputted }: stateChangeProps){
     
     return (
         <section className='videosection'>
             {/* <NotesSummary noteSummary={noteSummary} /> */}
-            <VideoDisplayBox id={id} handleInputChange={handleInputChange} onPlayerReady={onPlayerReady} onPlayerStateChange={onPlayerStateChange} linkInputted={linkInputted} />
+            <VideoDisplayBox youtubeId={youtubeId} handleInputChange={handleInputChange} onPlayerReady={onPlayerReady} onPlayerStateChange={onPlayerStateChange} linkInputted={linkInputted} />
         </section>
     )
 }

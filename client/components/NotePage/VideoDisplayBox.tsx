@@ -3,13 +3,13 @@ import YouTube, { YouTubeProps } from 'react-youtube';
 
 interface stateChangeProps {
     handleInputChange: (val: string) => void,
-    id: string,
+    youtubeId: string,
     onPlayerReady: (val: object) => void,
     onPlayerStateChange: (val: object) => void,
     linkInputted: boolean
 }
 
-export default function VideoDisplayBox ({ id, handleInputChange, onPlayerReady, onPlayerStateChange, linkInputted }: stateChangeProps){
+export default function VideoDisplayBox ({ youtubeId, handleInputChange, onPlayerReady, onPlayerStateChange, linkInputted }: stateChangeProps){
    
     // config for youtube player
     const opts: YouTubeProps['opts'] = {
@@ -23,7 +23,7 @@ export default function VideoDisplayBox ({ id, handleInputChange, onPlayerReady,
 
     return (
         <div>
-            {linkInputted === false ? <input type="text" onChange={(e) => handleInputChange(e.target.value)} required placeholder="URL..." /> : <YouTube videoId={id} opts={opts} onReady={onPlayerReady} onStateChange={onPlayerStateChange} />}
+            {linkInputted === false ? <input type="text" onChange={(e) => handleInputChange(e.target.value)} required placeholder="URL..." /> : <YouTube videoId={youtubeId} opts={opts} onReady={onPlayerReady} onStateChange={onPlayerStateChange} />}
         </div>
     )
 }
