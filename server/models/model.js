@@ -1,18 +1,28 @@
-// import pg from 'pg';
+// // import pg from 'pg';
 // import path, { dirname } from 'path';
 // import { fileURLToPath } from 'url';
 // import { zip } from '../utils/utils.js';
 // import colors from 'colors';
 // import fs from 'fs/promises';
 
-// // Load config
-// const __dirname = dirname(fileURLToPath(import.meta.url));
-// const _config = JSON.parse(await fs.readFile(path.join(__dirname, './models.config.json')));
+// // // Load config
+// // const __dirname = dirname(fileURLToPath(import.meta.url));
+// // const _config = JSON.parse(await fs.readFile(path.join(__dirname, './models.config.json')));
 
-// // Database schema: https://app.dbdesigner.net/designer/schema/532196
-// // Initialize pool
-// const pool = new pg.Pool({
-//   connectionString: _config.databaseUri
+// // // Database schema: https://app.dbdesigner.net/designer/schema/532196
+// // // Initialize pool
+// // const pool = new pg.Pool({
+// //   connectionString: _config.databaseUri
+// // });
+
+// const { Pool } = require('pg');
+
+// const pool = new Pool({
+//   user: "postgres",
+//   host: "localhost",
+//   database: "minutes",
+//   password: "liberty1",
+//   port: 5433,
 // });
 
 // /**

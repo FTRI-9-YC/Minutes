@@ -2,7 +2,7 @@ import React from 'react';
 
 interface stateChangeProps {
     title: string,
-    time: number,
+    time: string,
     content: string,
     _id: number
 }
