@@ -1,9 +1,9 @@
 // // import pg from 'pg';
-// import path, { dirname } from 'path';
-// import { fileURLToPath } from 'url';
-// import { zip } from '../utils/utils.js';
-// import colors from 'colors';
-// import fs from 'fs/promises';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { zip } from '../utils/utils.js';
+import colors from 'colors';
+import fs from 'fs/promises';
 
 // // // Load config
 // // const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -15,44 +15,44 @@
 // //   connectionString: _config.databaseUri
 // // });
 
-// const { Pool } = require('pg');
+const { Pool } = require('pg');
 
-// const pool = new Pool({
-//   user: "postgres",
-//   host: "localhost",
-//   database: "minutes",
-//   password: "liberty1",
-//   port: 5433,
-// });
+const pool = new Pool({
+  user: "postgres",
+  host: "localhost",
+  database: "minutes",
+  password: "liberty1",
+  port: 5433,
+});
 
-// /**
-//  * Queries the database
-//  * @param {string} queryString
-//  * @param {any[]} params
-//  * @param {boolean} log Whether or not to log the query to the console. Default `false`
-//  */
-// export function query(queryString, params, log = false) {
-//   if (log) console.log('Running query:\n', colors.cyan(queryString));
-//   return pool.query(queryString, params);
-// }
+/**
+ * Queries the database
+ * @param {string} queryString
+ * @param {any[]} params
+ * @param {boolean} log Whether or not to log the query to the console. Default `false`
+ */
+export function query(queryString, params, log = false) {
+  if (log) console.log('Running query:\n', colors.cyan(queryString));
+  return pool.query(queryString, params);
+}
 
-// /**
-//  * Tagged template function which removes excess indentation from a multiline template literal
-//  * @param {TemplateStringsArray} strings 
-//  * @param  {...any[]} variables 
-//  */
-// export function sql(strings, ...variables) {
-//   const str = zip(strings, variables).join('');
-//   const lines = str.split(/\n/g);
-//   if (lines.length > 2) {
-//     const indent_0 = lines[1].search(/\S|$/m);
-//     const pattern = new RegExp(`^\\s{0,${indent_0}}`, 'm');
-//     for (let l = 1; l < lines.length; l++) {
-//       lines[l] = lines[l].replace(pattern, '');
-//     }
-//   }
-//   if (lines[0].trim() == '') lines.splice(0, 1);
-//   if (lines[lines.length - 1].trim() == '') lines.splice(lines.length - 1, 1);
+/**
+ * Tagged template function which removes excess indentation from a multiline template literal
+ * @param {TemplateStringsArray} strings 
+ * @param  {...any[]} variables 
+ */
+export function sql(strings, ...variables) {
+  const str = zip(strings, variables).join('');
+  const lines = str.split(/\n/g);
+  if (lines.length > 2) {
+    const indent_0 = lines[1].search(/\S|$/m);
+    const pattern = new RegExp(`^\\s{0,${indent_0}}`, 'm');
+    for (let l = 1; l < lines.length; l++) {
+      lines[l] = lines[l].replace(pattern, '');
+    }
+  }
+  if (lines[0].trim() == '') lines.splice(0, 1);
+  if (lines[lines.length - 1].trim() == '') lines.splice(lines.length - 1, 1);
     
-//   return lines.join('\n');
-// }
+  return lines.join('\n');
+}
